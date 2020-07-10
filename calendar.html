@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      let year,month;
+year = prompt('year','20');
+month = prompt('month as number','');
+let elem = document.createElement('div');
+function createcal(elem,year,month) {
+elem.prepend(lado(year,month));
+
+function lado(year,month) {
+  let data = new Date(year,month-1,1);
+  let a = data.getDay();
+  if(a == 0) {
+    a = 7;
+  }
+  function getLastDayOfMonth(year, month) {
+  let date = new Date(year, month + 1, 0);
+  return date.getDate();
+}
+let data2 = getLastDayOfMonth(year,month);
+
+let arr4= [];
+if (data.getMonth() !=1 || data.getMonth() !=3 || data.getMonth() !=5 || data.getMonth() !=8 || data.getMonth() !=10) {
+for (var n=0;n<data2;n++) {
+  if (n == 32 || n==33) continue;
+  arr4.push(n);
+}}
+else {
+  for (var n=0;n<data2;n++) {
+    arr4.push(n);
+}
+}
+arr4.push(1,2,3,4,5,6,7,8,9,10,11,12,13);
+let table = document.createElement('table');
+let arr1 = [];
+let tr2 = document.createElement('tr');
+let den = ['Mon','TH','Wed','Tue','Fri','Sat','Sun'];
+for (let k=0;k<7;k++) {
+let th = document.createElement('th');
+th.innerHTML = `${den[k]}`;
+tr2.append(th);
+}
+table.append(tr2);
+let tr3 = document.createElement('tr');
+for (let y=0;y<a-1;y++) {
+let th3 = document.createElement('th');
+th3.innerHTML =' ';
+tr3.append(th3);
+}
+let xy = a;
+let n2 = 1;
+for (a;a<=7;a++) {
+  let th4 = document.createElement('th');
+  th4.innerHTML = `${arr4[n2]}`;
+  n2++;
+  tr3.append(th4);
+}
+let n3 = n2;
+table.append(tr3);
+for (let i=0;i<5;i++) {
+  let tr = document.createElement('tr');
+  for (let x=0;x<7;x++) {
+    let th2 = document.createElement('th');
+    th2.innerHTML = `${arr4[n3]}`;
+    n3++;
+    tr.append(th2);
+}
+ arr1.push(tr);
+}
+table.append(...arr1);
+return table;
+}
+}
+elem.style.marginLeft = '20px';
+elem.style.float = 'left';
+elem.style.marginTop =  "10px";
+createcal(elem,year,month);
+document.body.append(elem);
+
+    </script>
+  </body>
+</html>
